@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+.search-container {
+  position: relative;
+  font-family: 'Raleway', sans-serif;
+  width: fit-content;
+}
+
+.main {
+  position: relative;
+  border: 2px solid #5F8FA4;
+  height: 45px;
+  background: #B1BEC6;
+  width: 420px;
+  border-radius: 50px;
+  padding-left: 45px;
+    padding-right: 50px;
+  font-size: 16px;
+  color: #555;
+}
+
+.main:focus {
+  outline: none;
+}
+
+.searchicon {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  background: transparent;
+  border: 3px solid #5F8FA4;
+  left: 10px;
+  top: 14px;
+  border-radius: 100%;
+}
+
+.searchicon::after {
+  content: '';
+  position: absolute;
+  background: #5F8FA4;
+  height: 6px;
+  width: 3px;
+  bottom: -5px;
+  right: -3px;
+  transform: rotate(-45deg);
+}
+
+.microphone {
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  background: #FF5252;
+  right: 12px;
+  top: 11px;
+  border-radius: 100%;
+  box-shadow: 0 1px 2px 0 #555;
+}
+
+.microphone::after {
+  content: '';
+  position: absolute;
+  background: #c90000;
+  height: 12px;
+  width: 8px;
+  border-radius: 10px;
+  left: 8px;
+  top: 3px;
+}
+
+.microphone::before {
+  content: '';
+  position: absolute;
+  border-bottom: 2px solid #c90000;
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  top: 6px;
+  left: 7px;
+}
+
+.mic-stand {
+  position: absolute;
+  height: 4px;
+  width: 2px;
+  background: #c90000;
+  bottom: 3px;
+  left: 11px;
+}
+
+.icon-holder {
+  display: flex;
+  justify-content: center;
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.icon {
+  position: relative;
+  height: 35px;
+  width: 35px;
+  background: #43b3e7;
+  border-radius: 100%;
+  box-shadow: 0 1px 2px 0 #555;
+  cursor: pointer;
+  opacity: 0;
+  transition: .4s;
+}
+
+.icon:hover {
+  background: #66c6f0;
+}
+
+.main:focus ~ .icon-holder > .icon {
+  animation: ani 2.2s ease-out infinite;
+}
+
+#gas {
+  animation-delay: .1s;
+}
+
+#eat {
+  animation-delay: .2s;
+}
+
+#coffee {
+  animation-delay: .3s;
+}
+
+#misc {
+  animation-delay: .4s;
+}
+
+@keyframes ani {
+
+  0% {
+    opacity: 1;
+  }
+
+  10% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  20% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.tooltip {
+  opacity: 0;
+  position: absolute;
+  font-size: 12px;
+  color: white;
+  background: #555;
+  padding: 8px;
+  border-radius: 15%;
+  top: 45px;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  background: #555;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  height: 18px;
+  width: 18px;
+  top: -10px;
+  left: 7px;
+}
+
+.icon:hover > .tooltip {
+  animation: ani .4s ease-out forwards;
+  animation-delay: .3s;
+}
+
+#parking::after {
+    content: 'P';
+    font-weight: bold;
+    position: absolute;
+    font-size: 13px;
+    color: #43b3e7;
+    background: white;
+    padding: 1px 3px 1px 4px;
+    border-radius: 100%;
+    left: 10px;
+    top: 9px;
+  }
+  
+  #gas::after {
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 12px;
+    background: white;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    top: 9px;
+    left: 11px;
+  }
+  
+  #gas::before {
+    content: '';
+    position: absolute;
+    height: 6px;
+    width: 8px;
+    background: #43b3e7;
+    left: 13px;
+    top: 11px;
+    z-index: 1;
+  }
+  
+  #eat::after {
+    content: '';
+    position: absolute;
+    height: 13px;
+    width: 4px;
+    background: white;
+    border-radius: 3px;
+    top: 15px;
+    left: 11px;
+  }
+  
+  #eat::before {
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 8px;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    background: white;
+    top: 12px;
+    left: 9px;
+  }
+
+  .cup {
+    position: absolute;
+    height: 14px;
+    width: 17px;
+    background: white;
+    top: 15px;
+    left: 8px;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+  }
+  
+  .cup::after {
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 15px;
+    border-radius: 100%;
+    right: -4px;
+    border-right: 2px solid white;
+  }
+  
+  #coffee::after {
+    content: 'S';
+    position: absolute;
+    font-style: italic;
+    font-size: 5px;
+    transform: skewY(-40deg);
+    color: white;
+    top: 6px;
+    left: 12px;
+  }
+  
+  #coffee::before {
+    content: 'S';
+    position: absolute;
+    font-style: italic;
+    font-size: 5px;
+    transform: skewY(-40deg);
+    color: white;
+    top: 6px;
+    left: 18px;
+  }
+  
+  .dots {
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background: white;
+    border-radius: 100%;
+    left: 15px;
+    top: 15px;
+  }
+  
+  .dots::after {
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background: white;
+    border-radius: 100%;
+    left: 9px;
+  }
+  
+  .dots::before {
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    background: white;
+    border-radius: 100%;
+    left: -9px;
+  }
+
+  .serch-section-wrapper {
+
+    width: 100%;
+  
+    display: flex;
+  
+    justify-content: center;
+  
+    align-items: center;
+
+    margin-top: 25px;
+  
+    margin-bottom: 0px;
+  }
+
+  #author-filter {
+
+    display: flex;
+  
+    justify-content: center;
+  
+    align-items: center;
+  }
+  
+  .author-icon {
+  
+    color: white;
+  
+    font-size: 18px;
+  
+    font-weight: bold;
+  }

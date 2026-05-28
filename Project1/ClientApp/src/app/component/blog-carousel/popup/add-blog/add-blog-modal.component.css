@@ -1,0 +1,105 @@
+.validation-error {
+  display: block;
+  margin-top: 6px;
+  color: #dc2626;
+  font-size: 13px;
+}
+
+.save-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal-container {
+    width: 800px;
+    max-width: 95%;
+    background: white;
+    border-radius: 14px;
+    padding: 30px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .close-btn {
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .full-width {
+    grid-column: span 2;
+  }
+  
+  .form-grid label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .form-grid textarea {
+    resize: none;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+  }
+  
+  .cancel-btn {
+    border: 1px solid #ccc;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .save-btn {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  }

@@ -1,0 +1,102 @@
+
+<button class="add-blog-btn" (click)="openAddModal()">
+  Add Blog
+</button>
+
+<app-add-blog-modal
+  *ngIf="isAddModalOpen"
+  (close)="closeAddModal()">
+</app-add-blog-modal>
+
+<app-add-blog-modal
+  *ngIf="isEditModalOpen"
+  [blogToEdit]="selectedBlog"
+  (close)="closeEditModal()">
+</app-add-blog-modal>
+
+
+
+<section class="blog_section">
+
+    <div class="container">
+  
+      <div class="blog_content">
+  
+        <button class="owl-prev" (click)="prev()">
+          <span>‹</span>
+        </button>
+  
+        <div class="blog_grid">
+  
+          <div class="blog_item" *ngFor="let item of visibleItems">
+  
+            <div class="blog_image">
+  
+              <img [src]="item.imageUrl" [alt]="item.title">
+              
+
+              <div class="card-actions">
+                <span class="edit-icon" (click)="openEditModal(item)">
+                  ✎
+                </span>
+              
+                <span class="delete-icon" (click)="deleteBlog(item.id)">
+              
+                  🗑️
+              
+                </span>
+              </div>
+  
+            </div>
+  
+            <div class="blog_details">
+  
+              <div class="blog_title">
+  
+                <h5>
+                  <a href="#">
+                    {{ item.title }}
+                  </a>
+                </h5>
+  
+              </div>
+  
+              <ul>
+  
+                <li>
+                  👤 {{ item.author }}
+                </li>
+  
+                <li>
+                  📅 {{ item.createdAt }}
+                </li>
+  
+              </ul>
+  
+              <p>
+                {{ item.body }}
+              </p>
+  
+              <a href="#">
+                Read More →
+              </a>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+  
+        <button class="owl-next" (click)="next()">
+          <span>›</span>
+        </button>
+  
+      </div>
+  
+    </div>
+  
+  </section>
+
+
+
+

@@ -1,0 +1,52 @@
+<section class="serch-section-wrapper">
+
+    <div class="search-container">
+  
+      <input class="main" type="text"   [(ngModel)]="searchValue"> />
+  
+      <span class="searchicon"></span>
+  
+      <div class="microphone">
+        <div class="mic-stand"></div>
+      </div>
+  
+      <div class="icon-holder">
+  
+        <div class="icon" id="author-filter">
+
+            <div (click)="searchByAuthor()" class="author-icon">
+              👤
+            </div>
+          
+            <div class="tooltip">
+              Filter By Author
+            </div>
+          
+          </div>
+  
+        <div class="icon" id="gas">
+          <div class="base"></div>
+          <div class="tooltip">Gas</div>
+        </div>
+  
+        <div class="icon" id="eat">
+          <div class="fork"></div>
+          <div class="knife"></div>
+          <div class="tooltip">Food</div>
+        </div>
+  
+        <div class="icon" id="coffee">
+          <div class="cup"></div>
+          <div class="tooltip">Coffee</div>
+        </div>
+  
+        <div class="icon" id="misc">
+          <div class="dots"></div>
+          <div class="tooltip">Misc</div>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </section>
