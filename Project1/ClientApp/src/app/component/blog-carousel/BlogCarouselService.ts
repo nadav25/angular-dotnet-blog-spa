@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
+import { BlogFilter } from "src/app/entitys/blog-carousel/BlogFilter";
 import { BlogItem } from "src/app/entitys/blog-carousel/BlogItem";
 
 
@@ -13,7 +14,8 @@ import { BlogItem } from "src/app/entitys/blog-carousel/BlogItem";
   })
   export class BlogCarouselService {
     
-    
+    // private readonly getBlogsUrl = '/api/BlogCarousel/GetBlogs';
+
     private readonly getBlogsUrl = 'https://localhost:7190/api/BlogCarousel/GetBlogs';
 
     private readonly createBlogUrl = 'https://localhost:7190/api/BlogCarousel/CreateBlog';
@@ -24,7 +26,8 @@ import { BlogItem } from "src/app/entitys/blog-carousel/BlogItem";
     
     public getBlogsSubject = new Subject<void>();
 
-    public filterByAuthorSubject = new Subject<string>();
+    public filterByAuthorSubject = new Subject<BlogFilter>();
+    
 
     constructor(private http: HttpClient) {}
   

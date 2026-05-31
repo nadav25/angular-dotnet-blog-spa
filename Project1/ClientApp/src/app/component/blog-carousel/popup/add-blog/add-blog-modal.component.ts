@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BlogCarouselService } from '../../BlogCarouselService';
 import { BlogItem } from 'src/app/entitys/blog-carousel/BlogItem';
+import { LocationService } from 'src/app/common-Service/LocationService';
 
 @Component({
   selector: 'app-add-blog-modal',
@@ -19,7 +20,7 @@ export class AddBlogModalComponent implements OnInit {
   close = new EventEmitter<void>();
 
   constructor(
-    private blogCarouselService: BlogCarouselService
+    private blogCarouselService: BlogCarouselService, private locationService: LocationService
   ) {}
   
   
@@ -36,19 +37,25 @@ export class AddBlogModalComponent implements OnInit {
     author: '',
     imageUrl: '',
     body: '',
-    createdAt : ''
+    createdAt : '',
+    latitude: 0,
+    longitude: 0,
+    city : ''
   };
 
-  saveModal() : void {
+  async saveModal() : Promise<void> {
     if (!this.blogToEdit) {
+
+      
       this.newBlog.createdAt = new Date().toLocaleDateString('en-US', {
         month: 'long',
         day: 'numeric',
         year: 'numeric'
       });
 
+      await this.tryGetLocation();
+
       this.blogCarouselService.createBlog(this.newBlog).subscribe({
-    
           next: () => {
             this.closeModal();
     
@@ -62,6 +69,19 @@ export class AddBlogModalComponent implements OnInit {
           this.blogCarouselService.getBlogsSubject.next();
         }
       });
+    }
+  }
+
+  async tryGetLocation() : Promise<void> {
+    try{
+      const location = await this.locationService.getCurrentLocation();
+      this.newBlog.latitude = location.latitude;
+      this.newBlog.longitude = location.longitude;
+
+      const city = await this.locationService.getCity(this.newBlog.latitude,this.newBlog.longitude)
+      this.newBlog.city = city.address.town;
+    } catch {
+
     }
   }
 

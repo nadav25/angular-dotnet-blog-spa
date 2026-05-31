@@ -114,11 +114,11 @@
   animation: ani 2.2s ease-out infinite;
 }
 
-#gas {
+#title-filter {
   animation-delay: .1s;
 }
 
-#eat {
+#date-icon {
   animation-delay: .2s;
 }
 
@@ -126,7 +126,7 @@
   animation-delay: .3s;
 }
 
-#misc {
+#clear-icon {
   animation-delay: .4s;
 }
 
@@ -336,6 +336,9 @@
   }
   
   .author-icon {
+
+    justify-content: center;
+    display: grid;
   
     color: white;
   

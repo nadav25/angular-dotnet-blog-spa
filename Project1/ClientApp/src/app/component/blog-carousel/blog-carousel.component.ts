@@ -4,6 +4,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BlogCarouselService } from './BlogCarouselService';
 import { BlogItem } from "src/app/entitys/blog-carousel/BlogItem";
 import { Conditional } from '@angular/compiler';
+import { BlogFilter, eBlogFilterType } from 'src/app/entitys/blog-carousel/BlogFilter';
+import { LocationService } from 'src/app/common-Service/LocationService';
 
 
 
@@ -24,7 +26,9 @@ export class BlogCarouselComponent implements OnInit,OnDestroy {
 
   selectedBlog?: BlogItem;
 
-  constructor(private blogCarouselService: BlogCarouselService) {}
+  isFilterActive : boolean = false;
+
+  constructor(private blogCarouselService: BlogCarouselService,private locationService: LocationService) {}
   
 
   items: BlogItem[] = [];
@@ -48,22 +52,23 @@ export class BlogCarouselComponent implements OnInit,OnDestroy {
     });
 
     this.blogCarouselService.filterByAuthorSubject.subscribe({
-  
-      next: (authorName) => {
-  
-        this.filterByAuthor(authorName);
-      }
-    });
 
+      next: (blogFilter : BlogFilter) => {
+        this.setFilterInfo(blogFilter);
+      }
+
+    });
   }
 
   get visibleItems(): BlogItem[] {
 
-    return this.items.slice(this.currentIndex, this.currentIndex + 3);
+    if(this.isFilterActive && !(this.items.length > 2) ) {
+      return this.items.slice(this.currentIndex, this.currentIndex + 3);
+    } else {
+      const duplicated = [...this.items, ...this.items];
 
-    const duplicated = [...this.items, ...this.items];
-
-    return duplicated.slice(this.currentIndex, this.currentIndex + 3);
+      return duplicated.slice(this.currentIndex, this.currentIndex + 3);
+    }    
   }
 
 
@@ -80,16 +85,61 @@ export class BlogCarouselComponent implements OnInit,OnDestroy {
     });
   }
 
-  filterByAuthor(searchValue : string): void {
+  setFilterInfo(blogFilter : BlogFilter): void {
   
-    if (!searchValue) {
+    if ( blogFilter.filterType != eBlogFilterType.Location && !blogFilter.value  ) {
+      this.isFilterActive = false;
       this.items = this.originalItems;
-      return;
+    } else {
+      this.currentIndex = 0;
+      this.isFilterActive = true;
+      this.filterByType(blogFilter) 
     }
-  
-    this.items = this.originalItems.filter(blog =>
-      blog.author.toLowerCase().includes(searchValue)
-    );
+  }
+
+  async filterByType(blogFilter: BlogFilter): Promise<void> {
+    switch (blogFilter.filterType) {
+      case 'author':
+        this.items = this.originalItems.filter(blog =>
+          blog.author.toLowerCase().includes(blogFilter.value.toLowerCase()));
+        break;
+      case 'title':
+        this.items = this.originalItems.filter(blog =>
+          blog.title.toLowerCase().includes(blogFilter.value.toLowerCase()));
+        break;
+      case 'date':
+        this.items = this.originalItems.filter(blog =>
+          blog.createdAt.toLowerCase().includes(blogFilter.value.toLowerCase()));
+        break;
+        case 'location':
+          const city = await this.tryGetLocation();
+          this.items = this.originalItems.filter(blog =>
+            blog.city === city);
+          break;
+      case 'clear':
+        this.items = this.originalItems;
+        break;
+
+
+      default:
+        break;
+    }
+  }
+
+  async tryGetLocation() : Promise<string> {
+    let city = '';
+    try{
+      const location = await this.locationService.getCurrentLocation();
+      const latitude = location.latitude;
+      const longitude = location.longitude;
+
+      const cityInfo = await this.locationService.getCity(latitude,longitude);
+      city = cityInfo.address.town;
+    } catch {
+
+    }
+
+    return city;
   }
 
 

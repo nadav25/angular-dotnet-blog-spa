@@ -6,15 +6,15 @@
   
       <span class="searchicon"></span>
   
-      <div class="microphone">
+      <!-- <div class="microphone">
         <div class="mic-stand"></div>
-      </div>
+      </div> -->
   
       <div class="icon-holder">
   
         <div class="icon" id="author-filter">
 
-            <div (click)="searchByAuthor()" class="author-icon">
+            <div (click)="searchByAuthor(eBlogFilterType.Author)" class="author-icon">
               👤
             </div>
           
@@ -24,25 +24,34 @@
           
           </div>
   
-        <div class="icon" id="gas">
-          <div class="base"></div>
-          <div class="tooltip">Gas</div>
+        <div class="icon" id="title-filter">
+          <div (click)="searchByAuthor(eBlogFilterType.Title)" class="author-icon">
+              📝 
+          </div>
+          <div class="tooltip">Filter By Title</div>
         </div>
   
-        <div class="icon" id="eat">
-          <div class="fork"></div>
-          <div class="knife"></div>
-          <div class="tooltip">Food</div>
+        <div class="icon" id="date-icon">
+          <div (click)="searchByAuthor(eBlogFilterType.Date)" class="author-icon">
+            📅 
+          </div>
+          <div class="tooltip">Filter By Date</div>
         </div>
   
-        <div class="icon" id="coffee">
-          <div class="cup"></div>
-          <div class="tooltip">Coffee</div>
+        <div class="icon" id="location">
+          <div (click)="searchByAuthor(eBlogFilterType.Location)" class="author-icon">
+            📍 
+          </div>
+          <div class="tooltip">Filter By My Location</div>
         </div>
-  
-        <div class="icon" id="misc">
-          <div class="dots"></div>
-          <div class="tooltip">Misc</div>
+        
+        <div class="icon" id="clear-icon">
+          <div (click)="searchByAuthor(eBlogFilterType.Clear)" class="author-icon">
+            ❌ 
+          </div>
+          <div class="tooltip">
+            Clear Filter
+        </div>
         </div>
   
       </div>

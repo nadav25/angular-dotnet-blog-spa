@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BlogCarouselService } from '../blog-carousel/BlogCarouselService';
+import { BlogFilter , eBlogFilterType } from 'src/app/entitys/blog-carousel/BlogFilter';
 
 @Component({
   selector: 'app-serch-section',
@@ -10,13 +11,23 @@ export class SerchSectionComponent {
 
   searchValue = '';
 
+  eBlogFilterType = eBlogFilterType
+
   constructor(
     private blogCarouselService: BlogCarouselService
   ) {}
 
 
-  searchByAuthor(): void {
-    this.blogCarouselService.filterByAuthorSubject.next(this.searchValue);
+  searchByAuthor(eBlogFilterType : eBlogFilterType): void {
+    const blogFilter : BlogFilter = {
+      filterType : eBlogFilterType ,
+      value : this.searchValue
+    };
+    
+    this.blogCarouselService.filterByAuthorSubject.next(blogFilter);
+    if(eBlogFilterType == this.eBlogFilterType.Clear) {
+      this.searchValue = '';
+    }
   }
 
 }

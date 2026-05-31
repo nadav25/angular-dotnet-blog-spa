@@ -9,4 +9,10 @@ export interface BlogItem {
     createdAt: string;
     body: string;
 
+    latitude: number;
+
+    longitude: number;
+
+    city : string
+
   }

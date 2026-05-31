@@ -70,6 +70,10 @@
                 <li>
                   📅 {{ item.createdAt }}
                 </li>
+
+                <li *ngIf="item.city">
+                  📍 {{ item.city }}
+                </li>
   
               </ul>
   
